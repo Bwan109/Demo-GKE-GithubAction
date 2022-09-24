@@ -15,7 +15,7 @@ on:
  # IMAGE: static-site
 
 jobs:
-  Vault:
+  vault:
     name: Import Secrets
     uses: hashicorp/vault-action@v2.4.0
     with:
