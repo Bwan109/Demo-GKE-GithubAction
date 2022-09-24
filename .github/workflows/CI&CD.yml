@@ -27,7 +27,7 @@ jobs:
       - name: Import Sonar Secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200
+          url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200/
           token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
               test/ci/ SONAR_TOKEN | SONAR_TOKEN
@@ -39,7 +39,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
 
   # Setup Build & Deploy to GKE
   setup-build-publish-deploy:
@@ -55,7 +55,7 @@ jobs:
     - uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
       with:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
-        project_id: ${{ secrets.GKE_PROJECT }}
+        project_id: ${{ env.GKE_PROJECT }}
 
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
@@ -67,7 +67,7 @@ jobs:
       with:
         cluster_name: github-actions
         location: asia-southeast1
-        credentials: ${{ secrets.GKE_SA_KEY }}
+        credentials: ${{ env.GKE_SA_KEY }}
 
     # Build the Docker image
     - name: Build
