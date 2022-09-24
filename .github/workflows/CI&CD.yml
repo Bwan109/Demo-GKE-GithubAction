@@ -15,22 +15,23 @@ on:
  # IMAGE: static-site
 
 jobs:
-  vault:
-    name: Import Secrets
-    uses: hashicorp/vault-action@v2.4.0
-    with:
-      url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200
-      token: ${{ secrets.VAULT_TOKEN }}
-      secrets: |
-          test/ci/ GKE_PROJECT | GKE_PROJECT ;
-          test/ci/ GKE_SA_KEY | GKE_SA_KEY ;
-          test/ci/ SONAR_TOKEN | SONAR_TOKEN
+
 
   # SonarCloud Scan
   sonarcloud:
+          
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
+        # Import Sonar Secrets
+      - name: Import Sonar Secrets
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          secrets: |
+              test/ci/ SONAR_TOKEN | SONAR_TOKEN
+              
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
