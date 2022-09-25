@@ -9,10 +9,10 @@ on:
 
 #env:
 #  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
- # GKE_CLUSTER: github-actions    # Add your cluster name here.
+# GKE_CLUSTER: github-actions    # Add your cluster name here.
 #  GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
- # DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
- # IMAGE: static-site
+# DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
+# IMAGE: static-site
 
 jobs:
 
