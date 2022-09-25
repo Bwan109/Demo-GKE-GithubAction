@@ -27,7 +27,7 @@ jobs:
       - name: Import Sonar Secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200/
+          url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200
           token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
               secret/data/kv/tests SONAR_TOKEN | SONAR_TOKEN
