@@ -23,7 +23,7 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-        # Import Sonar Secrets
+        # Import Sonar Secrets from VAULT
       - name: Import Sonar Secrets
         uses: hashicorp/vault-action@v2.4.0
         with:
@@ -50,6 +50,18 @@ jobs:
     environment: production
 
     steps:
+    # Import Google Secrets from VAULT
+    - name: Import Google Secrets
+      uses: hashicorp/vault-action@v2.4.0
+      with:
+        url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200
+        method: token
+        token: ${{ secrets.VAULT_TOKEN }}
+        namespace: admin
+        secrets: |
+            kv/data/ci GKE_PROJECT | GKE_PROJECT
+            kv/data/ci GKE_SA_KEY | GKE_SA_KEY
+    
     - name: Checkout
       uses: actions/checkout@v3
 
