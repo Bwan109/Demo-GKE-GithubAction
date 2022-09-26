@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Demo (SonarQube Docker, K8S, GKE)
+name: CI/CD Pipeline Demo (Vault, SonarQube Docker, K8S, GKE)
 
 on:
   push:
