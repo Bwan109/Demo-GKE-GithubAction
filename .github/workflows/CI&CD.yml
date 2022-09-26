@@ -80,7 +80,7 @@ jobs:
     # Get the GKE credentials so we can deploy to the cluster
     - uses: google-github-actions/get-gke-credentials@v0
       with:
-        cluster_name: github-actions
+        cluster_name: github-action
         location: asia-southeast1
         credentials: ${{ env.GKE_SA_KEY }}
 
