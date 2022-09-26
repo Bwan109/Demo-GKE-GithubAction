@@ -94,7 +94,7 @@ jobs:
     - name: Build Docker Image and Push to Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        #image: bwan109/demo-dotnetcicd  # Specify Docker Hub Repo name
+        image: bwan109/demo-gke  # Specify Docker Hub Repo name
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
