@@ -102,7 +102,7 @@ jobs:
     
     - name: Publish
       env:
-        $IMAGE: static-site
+        IMAGE: static-site
       run: |-
         docker push "gcr.io/${{ env.GKE_PROJECT }}/$IMAGE:$GITHUB_SHA"
 
