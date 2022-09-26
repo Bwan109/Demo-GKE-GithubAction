@@ -101,6 +101,8 @@ jobs:
     # Push the Docker image to Google Container Registry
     
     - name: Publish
+      env:
+        $IMAGE: static-site
       run: |-
         docker push "gcr.io/${{ env.GKE_PROJECT }}/$IMAGE:$GITHUB_SHA"
 
