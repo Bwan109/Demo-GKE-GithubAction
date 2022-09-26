@@ -32,7 +32,7 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           namespace: admin
           secrets: |
-              secret/data/kv/ci/ SONAR_TOKEN | SONAR_TOKEN
+              secret/kv/ci/ SONAR_TOKEN | SONAR_TOKEN
               
       - uses: actions/checkout@v2
         with:
