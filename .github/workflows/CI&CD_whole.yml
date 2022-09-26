@@ -91,7 +91,7 @@ jobs:
         credentials: ${{ env.GKE_SA_KEY }}
 
     # Build & Push the Docker images to Docker Hub
-    - name: Build Docker Image and Push to Docker Hub
+      #name: Build Docker Image and Push to Docker Hub
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
