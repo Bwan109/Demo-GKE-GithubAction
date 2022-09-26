@@ -88,9 +88,9 @@ jobs:
         credentials: ${{ env.GKE_SA_KEY }}
 
     # Build & Push the Docker images to Docker Hub
-    - name: build-push-docker-image
+ #   - name: build-push-docker-image
       #needs: build-and-test # Needs the build application job first from above
-    - uses: actions/checkout@v2     # Checkout is needed so that it moves to root directory to read the Dockerfile
+#    - uses: actions/checkout@v2     # Checkout is needed so that it moves to root directory to read the Dockerfile
     - name: Build Docker Image and Push to Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
