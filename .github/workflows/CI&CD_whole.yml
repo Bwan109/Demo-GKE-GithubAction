@@ -6,16 +6,9 @@ on:
       - master
 
 
-#env:
-#  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-# GKE_CLUSTER: github-actions    # Add your cluster name here.
-#  GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
-# DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
-# IMAGE: static-site
+
 
 jobs:
-
-
   # SonarCloud Scan
   sonarcloud:
     name: SonarCloud
@@ -45,7 +38,6 @@ jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
-    
     environment: production
  
     steps:
@@ -67,8 +59,6 @@ jobs:
             kv/data/ci DOCKER_PASSWORD | DOCKER_PASSWORD
             
        
-
-
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -91,7 +81,6 @@ jobs:
         credentials: ${{ env.GKE_SA_KEY }}
 
     # Build & Push the Docker images to Docker Hub
-      #name: Build Docker Image and Push to Docker Hub
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
