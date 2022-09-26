@@ -62,7 +62,10 @@ jobs:
             kv/data/ci GKE_SA_KEY | GKE_SA_KEY;
             kv/data/ci GKE_CLUSTER | GKE_CLUSTER;
             kv/data/ci GKE_ZONE | GKE_ZONE;
-            kv/data/ci DEPLOYMENT_NAME | DEPLOYMENT_NAME
+            kv/data/ci DEPLOYMENT_NAME | DEPLOYMENT_NAME;
+            kv/data/ci DOCKER_USERNAME | DOCKER_USERNAME;
+            kv/data/ci DOCKER_PASSWORD | DOCKER_PASSWORD
+            
        
 
 
@@ -96,8 +99,8 @@ jobs:
       with:
         image: bwan109/demo-gke  # Specify Docker Hub Repo name
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ env.DOCKER_USERNAME }}
+        password: ${{ env.DOCKER_PASSWORD }}
 
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
