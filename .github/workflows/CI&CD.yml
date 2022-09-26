@@ -59,7 +59,7 @@ jobs:
         token: ${{ secrets.VAULT_TOKEN }}
         namespace: admin
         secrets: |
-            kv/data/ci GKE_PROJECT | GKE_PROJECT
+            kv/data/ci GKE_PROJECT | GKE_PROJECT ;
             kv/data/ci GKE_SA_KEY | GKE_SA_KEY
         
 
