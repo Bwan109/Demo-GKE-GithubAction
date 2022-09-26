@@ -61,14 +61,11 @@ jobs:
         namespace: admin
         secrets: |
             kv/data/ci GKE_PROJECT | GKE_PROJECT ;
-            kv/data/ci GKE_SA_KEY | GKE_SA_KEY
+            kv/data/ci GKE_SA_KEY | GKE_SA_KEY;
+            kv/data/ci GKE_CLUSTER | GKE_CLUSTER;
+            kv/data/ci GKE_ZONE | GKE_ZONE;
+            kv/data/ci DEPLOYMENT_NAME | DEPLOYMENT_NAME
        
-      env:
-        PROJECT_ID: ${{ env.GKE_PROJECT }}
-        GKE_CLUSTER: github-action    # Add your cluster name here.
-        GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
-        DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
-        IMAGE: static-site
 
 
     - name: Checkout
@@ -94,12 +91,6 @@ jobs:
 
     # Build the Docker image
     - name: Build
-      env:
-        PROJECT_ID: ${{ env.GKE_PROJECT }}
-        GKE_CLUSTER: github-action    # Add your cluster name here.
-        GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
-        DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
-        IMAGE: static-site
       run: |-
         docker build \
           --tag "gcr.io/$PROJECT_ID/static-site:$GITHUB_SHA" \
@@ -110,12 +101,6 @@ jobs:
     # Push the Docker image to Google Container Registry
     
     - name: Publish
-      env:
-        PROJECT_ID: ${{ env.GKE_PROJECT }}
-        GKE_CLUSTER: github-action    # Add your cluster name here.
-        GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
-        DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
-        IMAGE: static-site
       run: |-
         docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
 
