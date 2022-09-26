@@ -7,6 +7,12 @@ on:
     branches:
       - master
 
+env:
+  PROJECT_ID: ${{ env.GKE_PROJECT }}
+  GKE_CLUSTER: github-action    # Add your cluster name here.
+  GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
+  DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
+  IMAGE: static-site
 #env:
 #  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
 # GKE_CLUSTER: github-actions    # Add your cluster name here.
@@ -62,12 +68,7 @@ jobs:
             kv/data/ci GKE_PROJECT | GKE_PROJECT ;
             kv/data/ci GKE_SA_KEY | GKE_SA_KEY
        
-      env:
-        PROJECT_ID: ${{ env.GKE_PROJECT }}
-        GKE_CLUSTER: github-action    # Add your cluster name here.
-        GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
-        DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
-        IMAGE: static-site
+
 
 
     - name: Checkout
