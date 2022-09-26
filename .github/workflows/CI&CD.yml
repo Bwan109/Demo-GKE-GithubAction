@@ -64,7 +64,7 @@ jobs:
        
       env:
         PROJECT_ID: ${{ env.GKE_PROJECT }}
-        GKE_CLUSTER: github-actions    # Add your cluster name here.
+        GKE_CLUSTER: github-action    # Add your cluster name here.
         GKE_ZONE:  asia-southeast1  # Add your cluster zone here.
         DEPLOYMENT_NAME: helloworld-gke # Add your deployment name here.  (This follows the deployment.yaml depoyment name)
         IMAGE: static-site
