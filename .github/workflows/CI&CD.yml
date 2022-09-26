@@ -28,9 +28,11 @@ jobs:
         uses: hashicorp/vault-action@v2.4.0
         with:
           url: https://vault-cluster-public-vault-5768c3ac.06fac563.z1.hashicorp.cloud:8200
+          method: token
           token: ${{ secrets.VAULT_TOKEN }}
+          namespace: admin
           secrets: |
-              secret/data/kv/tests SONAR_TOKEN | SONAR_TOKEN
+              secret/kv/ci SONAR_TOKEN | SONAR_TOKEN
               
       - uses: actions/checkout@v2
         with:
